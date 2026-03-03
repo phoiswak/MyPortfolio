@@ -15,20 +15,29 @@ const eduvosModules = [
 
 const eduCards = [
   {
+    icon: "🎓",
+    year: "2022",
+    institution: "Eduvos",
+    qualification: "IT Higher Certificate",
+    modules: eduvosModules,
+  },
+  {
+    icon: "⚡",
     year: "2023",
     institution: "RedAcademy",
-    course: "Software Developer Sprinter Programme",
+    qualification: "Software Developer Sprinter Programme",
   },
   {
+    icon: "🛡️",
     year: "2018",
     institution: "NOSA",
-    course:
-      "Introduction To SAMTRAC (Safety Management Training Course) Certificate",
+    qualification: "Introduction To SAMTRAC Certificate",
   },
   {
+    icon: "🏗️",
     year: "2014 – 2016",
     institution: "Civil Engineering",
-    course: "National Diploma N4–N6",
+    qualification: "National Diploma N4–N6",
   },
 ];
 
@@ -38,26 +47,24 @@ export default function Education() {
       <p className="section-title">
         <span>04.</span> Education <span></span>
       </p>
-      <p className="section-sub">
-        My academic and professional learning journey
-      </p>
+      <p className="section-sub">My academic and professional learning journey</p>
 
       <div className="edu-grid">
-        <div className="edu-card">
-          <div className="edu-year">2022</div>
-          <div className="edu-institution">Eduvos</div>
-          <ul className="exp-list">
-            {eduvosModules.map((mod) => (
-              <li key={mod}>{mod}</li>
-            ))}
-          </ul>
-        </div>
-
-        {eduCards.map(({ year, institution, course }) => (
-          <div className="edu-card" key={institution}>
-            <div className="edu-year">{year}</div>
+        {eduCards.map(({ icon, year, institution, qualification, modules }) => (
+          <div className={`edu-card${modules ? " edu-card--wide" : ""}`} key={institution}>
+            <div className="edu-card-header">
+              <span className="edu-icon">{icon}</span>
+              <span className="edu-year">{year}</span>
+            </div>
             <div className="edu-institution">{institution}</div>
-            <div className="edu-course">{course}</div>
+            <div className="edu-qualification">{qualification}</div>
+            {modules && (
+              <div className="edu-modules">
+                {modules.map((mod) => (
+                  <span className="edu-tag" key={mod}>{mod}</span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
